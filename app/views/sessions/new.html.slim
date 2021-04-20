@@ -4,7 +4,7 @@
     = f.text_field :email, class: 'form-control', id: 'session_email'
   .form-group 
     = f.label :password, 'パスワード'
-    = f.text_field :password, class: 'form-control', id: 'session_password'
+    = f.password_field :password, class: 'form-control', id: 'session_password'
   .text-center
     = f.submit "ログイン", class: 'btn btn-primary col-md-2'
   

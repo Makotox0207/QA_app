@@ -1,9 +1,12 @@
-h2 画像
+
 
 = form_with model: @user, local: true do |f|
   .form-group
     = f.label :name, '名前'
     = f.text_field :name, class: 'form-control', id: 'user_name'
+  .form-group
+    = f.label :avatar, 'アバター画像'
+    = f.file_field :avatar, class: 'form-control', id: 'user_avatar'
   .form-group
     = f.label :email, 'メールアドレス'
     = f.text_field :email, class: 'form-control', id: 'user_email'
@@ -13,5 +16,6 @@ h2 画像
   .form-group
     = f.label :password_confirmation, 'パスワード確認'
     = f.password_field :password_confirmation, class: 'form-control', id: 'user_password_confirmation'
+  .form-group 
   .text-center
     = f.submit "登録", class: 'btn btn-primary col-md-2'

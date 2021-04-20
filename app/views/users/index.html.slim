@@ -4,5 +4,8 @@
     tbody 
     - @users.each do |user|
       tr 
-        td = link_to user.name
+        td 
+          - if user.avatar?
+            = image_tag user.avatar.url, size: '50x50'
+        td =  user.name
 
