@@ -4,5 +4,6 @@ Rails.application.routes.draw do
   delete '/logout', to: 'sessions#destroy'
   resources :users, except: [:new]
   get '/signup', to: 'users#new'
-  root to: "users#index"
+  resources :questions
+  root to: "questions#index"
 end

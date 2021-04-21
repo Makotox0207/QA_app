@@ -1,0 +1,7 @@
+.mb-3 
+  table.table.table-hover
+    tbody 
+    - @questions.each do |question|
+      tr 
+        td =  link_to question.title, question
+
