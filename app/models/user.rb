@@ -4,4 +4,6 @@ class User < ApplicationRecord
   validates :password, presence: true
   has_secure_password
   mount_uploader :avatar, AvatarUploader
+
+  has_many :questions
 end

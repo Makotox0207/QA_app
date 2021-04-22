@@ -1,1 +1,11 @@
-
+.row 
+  .col-sm 
+    - if @question.user.avatar?
+      = image_tag @question.user.avatar.url, size: '50x50'
+  .col-sm
+    h2 =@question.title
+  .col-sm 
+   - if current_user.id == @question.user_id
+    = link_to '編集', edit_question_path, class: 'btn btn-success'
+    = link_to '削除', question_path, method: :delete, data: { confirm: '質問を削除しますか？'}, class: 'btn btn-danger'
+p =@question.body

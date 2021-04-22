@@ -8,12 +8,13 @@ class QuestionsController < ApplicationController
   end
 
   def create
-    @question= Question.new(question_params)
-      if @question.save
-        redirect_to root_url, notice: '質問を投稿しました'
-      else
-        render :new
-      end
+    question= Question.new(question_params)
+    question.user_id = current_user.id
+    if question.save
+      redirect_to root_url, notice: '質問を投稿しました'
+    else
+      render :new
+    end
   end
 
   def show
@@ -21,12 +22,19 @@ class QuestionsController < ApplicationController
   end
 
   def edit
+    @question= Question.find(params[:id])
   end
 
   def update
+    question = Question.find(params[:id])
+    question.update!(question_params)
+    redirect_to question_url, notice: '質問を更新しました'
   end
 
   def destroy
+    question = Question.find(params[:id])
+    question.destroy
+    redirect_to root_url, notice: '質問を削除しました'
   end
 
   private
