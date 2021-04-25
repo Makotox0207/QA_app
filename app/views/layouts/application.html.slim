@@ -22,7 +22,7 @@ html
         li.nav-item= link_to '新規登録', signup_path, class: 'nav-link'
 
   .container
-   -if flash.notice.present?
-    .alert.alert-success
-      = flash.notice
-  = yield
+    -if flash.notice.present?
+      .alert.alert-success
+        = flash.notice
+    = yield
