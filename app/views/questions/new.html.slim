@@ -1,9 +1,11 @@
 = form_with model: @question, local: true do |f|
   .form-group
-    = f.label :title, '質問タイトル'
-    = f.text_field :title, class: 'form-control', id: 'question_title'
+    = f.label :title, '質問タイトル', class: 'sr-only'
+    = f.text_field :title, class: 'form-control', id: 'question_title', placeholder: '質問タイトル'
+
   .form-group 
-    = f.label :body, '質問内容'
-    = f.text_area :body, class: 'form-control', id: 'question_body'
+    = f.label :body, '質問内容', class: 'sr-only'
+    = f.text_area :body, class: 'form-control', id: 'question_body', placeholder: '質問内容'
+
   .text-center 
     = f.submit '投稿', class: 'btn btn-primary col-md-2'

@@ -1,19 +1,20 @@
-.row
-  .col-sm
+.form-row
+  .col-2
     - if @question.user.avatar?
       = image_tag @question.user.avatar.url, size: '50x50'
-  .col-sm
-    h2 =@question.title
-  .col-sm 
+  .col-8
+    h3 =@question.title
+  .col-2
     - if current_user.id == @question.user_id
       = link_to '編集', edit_question_path, class: 'btn btn-success'
       = link_to '削除', question_path, method: :delete, data: { confirm: '質問を削除しますか？'}, class: 'btn btn-danger'
-p =@question.body
+.form-group
+  =@question.body
 
 .form
   = form_with model: [@question, @answer], local: true do |f|
     .form-group 
-      = f.label :body, '回答'
+      = f.label :body, '回答', class: 'sr-only'
       = f.text_area :body, class: 'form-control'
     .text-center
       = f.submit '回答する', class: 'btn btn-primary col-md-2'
@@ -22,8 +23,11 @@ p =@question.body
   table.table.table-hover
     tbody 
     - @answers.each do |answer|
-      tr 
+      tr
         - if answer.question_id == @question.id
+          td 
+            - if answer.user.avatar?
+              = image_tag answer.user.avatar.url, size: '50x50'
           td= answer.body
 
 

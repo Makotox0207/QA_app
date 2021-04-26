@@ -1,7 +1,20 @@
+.form
+  = search_form_for @q, class: 'mb-5' do |f|
+    .form-row
+      .col-8
+        = f.label :title_cont, '検索ワード', class: 'sr-only'
+        = f.search_field :title_cont, class: 'form-control', placeholder: '検索ワード'
+      .col-4
+        = f.submit '検索', class: 'btn btn-primary'
+
+
 .mb-3 
   table.table.table-hover
     tbody 
     - @questions.each do |question|
-      tr 
+      tr
+        td 
+          - if question.user.avatar?
+            = image_tag question.user.avatar.url, size: '50x50'
         td =  link_to question.title, question
 
