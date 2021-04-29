@@ -4,6 +4,16 @@ class QuestionsController < ApplicationController
     @questions= @q.result
   end
 
+  def unsolved
+    @q = Question.ransack(params[:q])
+    @questions = @q.result.where(status: 'unsolved')
+  end
+  
+  def solved 
+    @q = Question.ransack(params[:q])
+    @questions = @q.result.where(status: 'solved')
+  end
+  
   def new
     @question= Question.new
   end
@@ -31,7 +41,7 @@ class QuestionsController < ApplicationController
   def update
     question = Question.find(params[:id])
     question.update!(question_params)
-    redirect_to question_url, notice: '質問を更新しました'
+      redirect_to question_url, notice: '質問を更新しました'
   end
 
   def destroy
@@ -43,6 +53,6 @@ class QuestionsController < ApplicationController
   private
 
   def question_params
-    params.require(:question).permit(:title, :body)
+    params.require(:question).permit(:title, :body, :status)
   end
 end

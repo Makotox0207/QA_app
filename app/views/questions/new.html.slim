@@ -6,6 +6,6 @@
   .form-group 
     = f.label :body, '質問内容', class: 'sr-only'
     = f.text_area :body, class: 'form-control', id: 'question_body', placeholder: '質問内容'
-
+    = f.select :status, Question.statuses.keys.map{|k| [t("enums.question.status.#{k}"), k]}
   .text-center 
     = f.submit '投稿', class: 'btn btn-primary col-md-2'
