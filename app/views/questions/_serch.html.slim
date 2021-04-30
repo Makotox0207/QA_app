@@ -18,3 +18,6 @@ table.table.table-hover
           = image_tag question.user.avatar.url, size: '50x50'
       td =  link_to question.title, question
 
+.pagination.justify-content-center
+  = paginate @questions
+

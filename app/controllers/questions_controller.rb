@@ -1,17 +1,17 @@
 class QuestionsController < ApplicationController
   def index
     @q = Question.ransack(params[:q])
-    @questions= @q.result
+    @questions= @q.result.page(params[:page]).per(4)
   end
 
   def unsolved
     @q = Question.ransack(params[:q])
-    @questions = @q.result.where(status: 'unsolved')
+    @questions = @q.result.where(status: 'unsolved').page(params[:page]).per(4)
   end
   
   def solved 
     @q = Question.ransack(params[:q])
-    @questions = @q.result.where(status: 'solved')
+    @questions = @q.result.where(status: 'solved').page(params[:page]).per(4)
   end
   
   def new

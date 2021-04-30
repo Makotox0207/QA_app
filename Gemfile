@@ -72,3 +72,4 @@ group :development do
 end
 
 gem 'ransack'
+gem 'kaminari'
