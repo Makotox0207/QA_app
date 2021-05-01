@@ -23,6 +23,8 @@ html
       - else 
         li.nav-item= link_to 'ログイン', login_path, class: 'nav-link'
         li.nav-item= link_to '新規登録', signup_path, class: 'nav-link'
+        li.nav-item= link_to '管理者ログイン', admin_login_path, class: 'nav-link'
+
 
   .container
     -if flash.notice.present?
