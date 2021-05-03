@@ -7,6 +7,21 @@ ja:
         restrict_dependent_destroy:
           has_one: "%{record}が存在しているので削除できません"
           has_many: "%{record}が存在しているので削除できません"
+  models:
+    question: 質問
+    user: ユーザー
+    answer: 答え
+  attributes:
+    id: ID
+    name: 名前
+    title: タイトル
+    body: 内容
+    created_at: 作成日時
+    updated_at: 更新日時
+    password: パスワード
+    password_confirmation: パスワード（確認）
+    email: メールアドレス 
+    status: 状態
   enums:
     question:
       status:

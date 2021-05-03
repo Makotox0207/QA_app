@@ -1,3 +1,10 @@
+- if @user.errors.present?
+  div#error_explanation.alert.alert-danger 
+    ul
+      - @user.errors.full_messages.each do |message|
+        li = message
+
+
 = form_with model: @user, local: true do |f|
 
   .form-group

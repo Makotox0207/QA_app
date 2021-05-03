@@ -1,5 +1,5 @@
 class Question < ApplicationRecord
-  validates :title, presence: true
+  validates :title, presence: true, length: {maximum: 30}
   validates :body, presence: true
   validates :status, presence: true
   belongs_to :user

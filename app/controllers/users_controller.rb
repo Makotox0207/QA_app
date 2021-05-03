@@ -22,8 +22,7 @@ class UsersController < ApplicationController
     @user = User.find_by(user_params)
   end
 
-  def show
-    
+  def show  
   end
 
   private

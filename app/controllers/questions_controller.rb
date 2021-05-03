@@ -1,4 +1,5 @@
 class QuestionsController < ApplicationController
+
   def index
     @q = Question.ransack(params[:q])
     @questions= @q.result.page(params[:page]).per(4)
@@ -15,14 +16,13 @@ class QuestionsController < ApplicationController
   end
   
   def new
-    @question= Question.new
+    @question= current_user.questions.new
   end
 
   def create
-    question= Question.new(question_params)
-    question.user_id = current_user.id
-    if question.save
-      redirect_to root_url, notice: '質問を投稿しました'
+    @question = current_user.questions.build(question_params)
+    if @question.save
+      redirect_to questions_url, notice:'質問を投稿しました'
     else
       render :new
     end
@@ -39,14 +39,14 @@ class QuestionsController < ApplicationController
   end
 
   def update
-    question = Question.find(params[:id])
-    question.update!(question_params)
+    @question = Question.find(params[:id])
+    @question.update!(question_params)
       redirect_to question_url, notice: '質問を更新しました'
   end
 
   def destroy
-    question = Question.find(params[:id])
-    question.destroy
+    @question = Question.find(params[:id])
+    @question.destroy!
     redirect_to root_url, notice: '質問を削除しました'
   end
 
