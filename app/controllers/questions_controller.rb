@@ -21,7 +21,9 @@ class QuestionsController < ApplicationController
 
   def create
     @question = current_user.questions.build(question_params)
+    question = @question
     if @question.save
+      NotificationMailer.question_notification_to_all(question).deliver_now
       redirect_to questions_url, notice:'質問を投稿しました'
     else
       render :new
