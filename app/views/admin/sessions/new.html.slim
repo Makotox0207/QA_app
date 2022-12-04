@@ -1,0 +1,13 @@
+.text-center
+  h1 管理者画面ログイン
+= form_with scope: :session, local: true do |f|
+  .form-group 
+    = f.label :email, 'メールアドレス', class: 'sr-only'
+    = f.text_field :email, class: 'form-control', id: 'session_email', placeholder: 'メールアドレス'
+
+  .form-group 
+    = f.label :password, 'パスワード', class: 'sr-only'
+    = f.password_field :password, class: 'form-control', id: 'session_password', placeholder: 'パスワード'
+  .text-center
+    = f.submit "ログイン", class: 'btn btn-primary col-md-2'
+  

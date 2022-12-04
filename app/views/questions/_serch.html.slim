@@ -1,0 +1,22 @@
+.form-group.row.justify-content-center
+  = link_to '全て', questions_path, class: 'btn btn-outline-dark px-5'
+  = link_to '未解決', questions_unsolved_path, class: 'btn btn-outline-dark px-5'
+  = link_to '解決', questions_solved_path, class: 'btn btn-outline-dark px-5'
+
+= search_form_for q do |f|
+  .form-group.row.justify-content-center
+    = f.label :title_cont, '検索ワード', class: 'sr-only'
+    = f.search_field :title_cont, class: 'form-control col-6', placeholder: '検索ワード'
+    = f.submit '検索', class: 'btn btn-primary col-2'
+
+table.table.table-hover
+  tbody 
+  - questions.each do |question|
+    tr
+      td 
+        - if question.user.avatar?
+          = image_tag question.user.avatar.url, size: '50x50'
+      td =  link_to question.title, question_path(question)
+      
+.pagination.justify-content-center
+  = paginate @questions

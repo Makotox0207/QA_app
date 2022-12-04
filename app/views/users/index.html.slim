@@ -1,0 +1,10 @@
+.mb-3 
+  table.table.table-hover
+    tbody 
+    - @users.each do |user|
+      tr 
+        td 
+          - if user.avatar?
+            = image_tag user.avatar.url, size: '50x50'
+        td =  user.name
+

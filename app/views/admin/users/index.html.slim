@@ -1,0 +1,19 @@
+= search_form_for @q, url: admin_users_path do |f|
+  .form-group.row.justify-content-center
+    = f.label :name_cont, '検索ワード', class: 'sr-only'
+    = f.search_field :name_cont, class: 'form-control col-6', placeholder: '検索ワード'
+    = f.submit '検索', class: 'btn btn-primary col-2'
+
+.mb-3 
+  table.table.table-hover
+    tbody 
+    - @users.each do |user|
+      tr 
+        td 
+          - if user.avatar?
+            = image_tag user.avatar.url, size: '50x50' 
+        td =  user.name
+        td = link_to '削除', admin_user_path(user), method: :delete, data: {confirm: 'ユーザーを削除しますか？'}, class: 'btn btn-danger'
+
+.pagination.justify-content-center
+  = paginate @users

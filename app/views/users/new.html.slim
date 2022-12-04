@@ -1,0 +1,29 @@
+- if @user.errors.present?
+  div#error_explanation.alert.alert-danger 
+    ul
+      - @user.errors.full_messages.each do |message|
+        li = message
+
+
+= form_with model: @user, local: true do |f|
+
+  .form-group
+    = f.label :avatar, 'アバター画像'
+    = f.file_field :avatar, class: 'form-control', id: 'user_avatar'
+    
+  .form-group
+    = f.label :name, '名前', class: 'sr-only'
+    = f.text_field :name, class: 'form-control', id: 'user_name', placeholder: '名前'
+
+  .form-group
+    = f.label :email, 'メールアドレス', class: 'sr-only'
+    = f.text_field :email, class: 'form-control', id: 'user_email', placeholder: 'メールアドレス'
+  .form-group
+    = f.label :password, 'パスワード', class: 'sr-only'
+    = f.password_field :password, class: 'form-control', id: 'user_password', placeholder: 'パスワード'
+  .form-group
+    = f.label :password_confirmation, 'パスワード確認', class: 'sr-only'
+    = f.password_field :password_confirmation, class: 'form-control', id: 'user_password_confirmation', placeholder: 'パスワード確認'
+  .form-group 
+    .text-center
+      = f.submit '登録', class: 'btn btn-primary col-md-2'
